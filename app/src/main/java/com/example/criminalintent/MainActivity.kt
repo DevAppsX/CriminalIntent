@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import java.util.*
 
-private const val TAG = "MainActivity"
 class MainActivity : AppCompatActivity(),
     CrimeListFragment.Callbacks {
 
@@ -24,5 +23,12 @@ class MainActivity : AppCompatActivity(),
         }
     }
 
-    override fun onCrimeSelected(crimeId: UUID) {}
+    override fun onCrimeSelected(crimeId: UUID) {
+        val fragment = CrimeFragment()
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }
